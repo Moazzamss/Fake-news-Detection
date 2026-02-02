@@ -4,16 +4,14 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Pick a News Article</title>
-    <link rel="stylesheet" href="/static/style.css">
-
-
+    <link rel="stylesheet" href="style.css">
 
     <style>
         /* Body styling */
         body {
             font-family: Arial, sans-serif;
-            background-color: #212121; /* Dark background */
-            color: #f0f0f0; /* Light text color */
+            background-color: #212121;
+            color: #f0f0f0;
             margin: 0;
             padding: 0;
             display: flex;
@@ -23,9 +21,8 @@
             min-height: 100vh;
         }
 
-        /* Container for the page content */
         .container {
-            background-color: #2c2c2c; /* Slightly lighter background for content */
+            background-color: #2c2c2c;
             width: 100%;
             max-width: 1000px;
             padding: 30px;
@@ -34,21 +31,18 @@
             text-align: center;
         }
 
-        /* Title */
         h1 {
             font-size: 2.5rem;
-            color: #f1c40f; /* Yellow color */
+            color: #f1c40f;
             font-weight: bold;
         }
 
-        /* News Container */
         .news-container {
             display: flex;
             justify-content: space-between;
             gap: 20px;
         }
 
-        /* News Box Styling */
         .news-box {
             width: 45%;
             height: 500px;
@@ -56,25 +50,30 @@
             border: 1px solid #f0f0f0;
             padding: 10px;
             border-radius: 5px;
-            background-color: #333; /* Dark background for news boxes */
+            background-color: #333;
             color: #f0f0f0;
         }
 
         .news-item {
             margin-bottom: 10px;
             padding: 10px;
-            background-color: #444; /* Lighter background for items */
+            background-color: #444;
             border: 1px solid #f0f0f0;
             border-radius: 5px;
             display: flex;
             justify-content: space-between;
             align-items: center;
+            cursor: pointer;
+        }
+
+        .news-item:hover {
+            background-color: #555;
         }
 
         .copy-btn {
             padding: 5px 12px;
             font-size: 14px;
-            background-color: #f39c12; /* Yellow color */
+            background-color: #f39c12;
             color: #fff;
             border: 1px solid #f39c12;
             border-radius: 3px;
@@ -85,7 +84,6 @@
             background-color: #e67e22;
         }
 
-        /* Back link */
         .back-link {
             text-align: center;
             margin-top: 30px;
@@ -93,7 +91,7 @@
 
         .back-link a {
             text-decoration: none;
-            color: #f39c12; /* Yellow color */
+            color: #f39c12;
             font-weight: bold;
             font-size: 1.2rem;
         }
@@ -102,7 +100,6 @@
             color: #e67e22;
         }
 
-        /* Footer Styling */
         footer {
             background-color: #1a1a1a;
             color: #fff;
@@ -126,82 +123,117 @@
     <div class="container">
         <h1>Pick a News Article</h1>
         
-        <!-- News Boxes -->
         <div class="news-container">
             <!-- Fake News Box -->
             <div class="news-box" id="fake-news-box">
                 <h3 style="color: #f39c12;">Fake News</h3>
-                <div class="news-item" data-article="Donald Trump Sends Out Embarrassing New Year’s Eve Message">
-                    Donald Trump Sends Out Embarrassing New Year’s Eve Message; This is Disturbing.
+                <div class="news-item" onclick="copyToClipboard(this)">
+                    Donald Trump Sends Out Embarrassing New Year's Eve Message; This is Disturbing.
+                    <button class="copy-btn">Copy</button>
                 </div>
-                <div class="news-item" data-article="Drunk Bragging Trump Staffer Started Russian Collusion Investigation">
+                <div class="news-item" onclick="copyToClipboard(this)">
                     Drunk Bragging Trump Staffer Started Russian Collusion Investigation.
+                    <button class="copy-btn">Copy</button>
                 </div>
-                <div class="news-item" data-article="Sheriff David Clarke Becomes An Internet Joke For Threatening To Poke People ‘In The Eye’">
-                    Sheriff David Clarke Becomes An Internet Joke For Threatening To Poke People ‘In The Eye’.
+                <div class="news-item" onclick="copyToClipboard(this)">
+                    Sheriff David Clarke Becomes An Internet Joke For Threatening To Poke People 'In The Eye'.
+                    <button class="copy-btn">Copy</button>
                 </div>
-                <div class="news-item" data-article="Trump Is So Obsessed He Even Has Obama’s Name Coded Into His Website (IMAGES)">
-                    Trump Is So Obsessed He Even Has Obama’s Name Coded Into His Website (IMAGES).
+                <div class="news-item" onclick="copyToClipboard(this)">
+                    Trump Is So Obsessed He Even Has Obama's Name Coded Into His Website (IMAGES).
+                    <button class="copy-btn">Copy</button>
                 </div>
-                <div class="news-item" data-article="Pope Francis Just Called Out Donald Trump During His Christmas Speech">
+                <div class="news-item" onclick="copyToClipboard(this)">
                     Pope Francis Just Called Out Donald Trump During His Christmas Speech.
+                    <button class="copy-btn">Copy</button>
                 </div>
-                <div class="news-item" data-article="Racist Alabama Cops Brutalize Black Boy While He Is In Handcuffs (GRAPHIC IMAGES)">
+                <div class="news-item" onclick="copyToClipboard(this)">
                     Racist Alabama Cops Brutalize Black Boy While He Is In Handcuffs (GRAPHIC IMAGES).
+                    <button class="copy-btn">Copy</button>
                 </div>
-                <div class="news-item" data-article="Fresh Off The Golf Course, Trump Lashes Out At FBI Deputy Director And James Comey">
+                <div class="news-item" onclick="copyToClipboard(this)">
                     Fresh Off The Golf Course, Trump Lashes Out At FBI Deputy Director And James Comey.
+                    <button class="copy-btn">Copy</button>
                 </div>
-                <div class="news-item" data-article="Trump Said Some INSANELY Racist Stuff Inside The Oval Office, And Witnesses Back It Up">
+                <div class="news-item" onclick="copyToClipboard(this)">
                     Trump Said Some INSANELY Racist Stuff Inside The Oval Office, And Witnesses Back It Up.
+                    <button class="copy-btn">Copy</button>
                 </div>
-                <div class="news-item" data-article="Former CIA Director Slams Trump Over UN Bullying, Openly Suggests He’s Acting Like A Dictator (TWEET)">
-                    Former CIA Director Slams Trump Over UN Bullying, Openly Suggests He’s Acting Like A Dictator (TWEET).
+                <div class="news-item" onclick="copyToClipboard(this)">
+                    Former CIA Director Slams Trump Over UN Bullying, Openly Suggests He's Acting Like A Dictator (TWEET).
+                    <button class="copy-btn">Copy</button>
                 </div>
-                <div class="news-item" data-article="WATCH: Brand-New Pro-Trump Ad Features So Much A** Kissing It Will Make You Sick">
+                <div class="news-item" onclick="copyToClipboard(this)">
                     WATCH: Brand-New Pro-Trump Ad Features So Much A** Kissing It Will Make You Sick.
+                    <button class="copy-btn">Copy</button>
                 </div>
             </div>
 
             <!-- Real News Box -->
             <div class="news-box" id="real-news-box">
                 <h3 style="color: #f39c12;">Real News</h3>
-                <div class="news-item" data-article="As U.S. budget fight looms, Republicans flip their fiscal script">
+                <div class="news-item" onclick="copyToClipboard(this)">
                     As U.S. budget fight looms, Republicans flip their fiscal script.
+                    <button class="copy-btn">Copy</button>
                 </div>
-                <div class="news-item" data-article="U.S. military to accept transgender recruits on Monday: Pentagon">
+                <div class="news-item" onclick="copyToClipboard(this)">
                     U.S. military to accept transgender recruits on Monday: Pentagon.
+                    <button class="copy-btn">Copy</button>
                 </div>
-                <div class="news-item" data-article="Senior U.S. Republican senator: 'Let Mr. Mueller do his job'">
-                    A gift-wrapped package addressed to U.S. Treasury Secretary Steven Mnuchin’s home in a posh Los Angeles neighborhood that was suspected of being a bomb was instead filled with horse manure, police told local media.
+                <div class="news-item" onclick="copyToClipboard(this)">
+                    A gift-wrapped package addressed to U.S. Treasury Secretary Steven Mnuchin's home in a posh Los Angeles neighborhood that was suspected of being a bomb was instead filled with horse manure, police told local media.
+                    <button class="copy-btn">Copy</button>
                 </div>
-                <div class="news-item" data-article="FBI Russia probe helped by Australian diplomat tip-off: NYT">
+                <div class="news-item" onclick="copyToClipboard(this)">
                     FBI Russia probe helped by Australian diplomat tip-off: NYT.
+                    <button class="copy-btn">Copy</button>
                 </div>
-                <div class="news-item" data-article="Trump wants Postal Service to charge 'much more' for Amazon shipments">
-                    A federal judge in Seattle partially blocked U.S. President Donald Trump’s newest restrictions on refugee admissions on Saturday, .
+                <div class="news-item" onclick="copyToClipboard(this)">
+                    A federal judge in Seattle partially blocked U.S. President Donald Trump's newest restrictions on refugee admissions on Saturday.
+                    <button class="copy-btn">Copy</button>
                 </div>
-                <div class="news-item" data-article="White House, Congress prepare for talks on spending, immigration">
+                <div class="news-item" onclick="copyToClipboard(this)">
                     White House, Congress prepare for talks on spending, immigration.
+                    <button class="copy-btn">Copy</button>
                 </div>
-                <div class="news-item" data-article="Trump says Russia probe will be fair, but timeline unclear: NYT">
-                    A federal appeals court in Washington on Friday rejected a bid by President Donald Trump’s administration to prevent the U.S. military from accepting transgender recruits starting Jan. 1
+                <div class="news-item" onclick="copyToClipboard(this)">
+                    A federal appeals court in Washington on Friday rejected a bid by President Donald Trump's administration to prevent the U.S. military from accepting transgender recruits starting Jan. 1.
+                    <button class="copy-btn">Copy</button>
                 </div>
-                <div class="news-item" data-article="Factbox: Trump on Twitter (Dec 29) - Approval rating, Amazon">
-                    U.S. court rejects Trump bid to stop transgender military recruits on Jan. 1,"NEW YORK (Reuters)
+                <div class="news-item" onclick="copyToClipboard(this)">
+                    U.S. court rejects Trump bid to stop transgender military recruits on Jan. 1, NEW YORK (Reuters).
+                    <button class="copy-btn">Copy</button>
                 </div>
-                <div class="news-item" data-article="Trump on Twitter (Dec 28) - Global Warming">
+                <div class="news-item" onclick="copyToClipboard(this)">
                     Trump on Twitter (Dec 28) - Global Warming.
+                    <button class="copy-btn">Copy</button>
                 </div>
-                <div class="news-item" data-article="Alabama official to certify Senator-elect Jones today despite challenge: CNN">
+                <div class="news-item" onclick="copyToClipboard(this)">
                     Alabama official to certify Senator-elect Jones today despite challenge: CNN.
+                    <button class="copy-btn">Copy</button>
                 </div>
             </div>
         </div>
 
         <div class="back-link">
-            <a href="/">Back to Fake News Detection</a>
+            <a href="index.html">Back to Fake News Detection</a>
         </div>
     </div>
+
+    <script>
+        function copyToClipboard(element) {
+            const text = element.textContent.replace('Copy', '').trim();
+            navigator.clipboard.writeText(text).then(function() {
+                const btn = element.querySelector('.copy-btn');
+                const originalText = btn.textContent;
+                btn.textContent = 'Copied!';
+                btn.style.backgroundColor = '#27ae60';
+                setTimeout(() => {
+                    btn.textContent = originalText;
+                    btn.style.backgroundColor = '#f39c12';
+                }, 2000);
+            });
+        }
+    </script>
 </body>
 </html>

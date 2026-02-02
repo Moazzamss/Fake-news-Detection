@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pick a News Article</title>
+    <link rel="stylesheet" href="style.css">
+
+
+
+    <style>
+        /* Body styling */
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #212121; /* Dark background */
+            color: #f0f0f0; /* Light text color */
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+
+        /* Container for the page content */
+        .container {
+            background-color: #2c2c2c; /* Slightly lighter background for content */
+            width: 100%;
+            max-width: 1000px;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0px 15px 30px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+
+        /* Title */
+        h1 {
+            font-size: 2.5rem;
+            color: #f1c40f; /* Yellow color */
+            font-weight: bold;
+        }
+
+        /* News Container */
+        .news-container {
+            display: flex;
+            justify-content: space-between;
+            gap: 20px;
+        }
+
+        /* News Box Styling */
+        .news-box {
+            width: 45%;
+            height: 500px;
+            overflow-y: auto;
+            border: 1px solid #f0f0f0;
+            padding: 10px;
+            border-radius: 5px;
+            background-color: #333; /* Dark background for news boxes */
+            color: #f0f0f0;
+        }
+
+        .news-item {
+            margin-bottom: 10px;
+            padding: 10px;
+            background-color: #444; /* Lighter background for items */
+            border: 1px solid #f0f0f0;
+            border-radius: 5px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .copy-btn {
+            padding: 5px 12px;
+            font-size: 14px;
+            background-color: #f39c12; /* Yellow color */
+            color: #fff;
+            border: 1px solid #f39c12;
+            border-radius: 3px;
+            cursor: pointer;
+        }
+
+        .copy-btn:hover {
+            background-color: #e67e22;
+        }
+
+        /* Back link */
+        .back-link {
+            text-align: center;
+            margin-top: 30px;
+        }
+
+        .back-link a {
+            text-decoration: none;
+            color: #f39c12; /* Yellow color */
+            font-weight: bold;
+            font-size: 1.2rem;
+        }
+
+        .back-link a:hover {
+            color: #e67e22;
+        }
+
+        /* Footer Styling */
+        footer {
+            background-color: #1a1a1a;
+            color: #fff;
+            text-align: center;
+            padding: 10px;
+            margin-top: 30px;
+            font-size: 1rem;
+        }
+
+        footer a {
+            color: #f39c12;
+            text-decoration: none;
+        }
+
+        footer a:hover {
+            color: #e67e22;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Pick a News Article</h1>
+        
+        <!-- News Boxes -->
+        <div class="news-container">
+            <!-- Fake News Box -->
+            <div class="news-box" id="fake-news-box">
+                <h3 style="color: #f39c12;">Fake News</h3>
+                <div class="news-item" data-article="Donald Trump Sends Out Embarrassing New Year’s Eve Message">
+                    Donald Trump Sends Out Embarrassing New Year’s Eve Message; This is Disturbing.
+                </div>
+                <div class="news-item" data-article="Drunk Bragging Trump Staffer Started Russian Collusion Investigation">
+                    Drunk Bragging Trump Staffer Started Russian Collusion Investigation.
+                </div>
+                <div class="news-item" data-article="Sheriff David Clarke Becomes An Internet Joke For Threatening To Poke People ‘In The Eye’">
+                    Sheriff David Clarke Becomes An Internet Joke For Threatening To Poke People ‘In The Eye’.
+                </div>
+                <div class="news-item" data-article="Trump Is So Obsessed He Even Has Obama’s Name Coded Into His Website (IMAGES)">
+                    Trump Is So Obsessed He Even Has Obama’s Name Coded Into His Website (IMAGES).
+                </div>
+                <div class="news-item" data-article="Pope Francis Just Called Out Donald Trump During His Christmas Speech">
+                    Pope Francis Just Called Out Donald Trump During His Christmas Speech.
+                </div>
+                <div class="news-item" data-article="Racist Alabama Cops Brutalize Black Boy While He Is In Handcuffs (GRAPHIC IMAGES)">
+                    Racist Alabama Cops Brutalize Black Boy While He Is In Handcuffs (GRAPHIC IMAGES).
+                </div>
+                <div class="news-item" data-article="Fresh Off The Golf Course, Trump Lashes Out At FBI Deputy Director And James Comey">
+                    Fresh Off The Golf Course, Trump Lashes Out At FBI Deputy Director And James Comey.
+                </div>
+                <div class="news-item" data-article="Trump Said Some INSANELY Racist Stuff Inside The Oval Office, And Witnesses Back It Up">
+                    Trump Said Some INSANELY Racist Stuff Inside The Oval Office, And Witnesses Back It Up.
+                </div>
+                <div class="news-item" data-article="Former CIA Director Slams Trump Over UN Bullying, Openly Suggests He’s Acting Like A Dictator (TWEET)">
+                    Former CIA Director Slams Trump Over UN Bullying, Openly Suggests He’s Acting Like A Dictator (TWEET).
+                </div>
+                <div class="news-item" data-article="WATCH: Brand-New Pro-Trump Ad Features So Much A** Kissing It Will Make You Sick">
+                    WATCH: Brand-New Pro-Trump Ad Features So Much A** Kissing It Will Make You Sick.
+                </div>
+            </div>
+
+            <!-- Real News Box -->
+            <div class="news-box" id="real-news-box">
+                <h3 style="color: #f39c12;">Real News</h3>
+                <div class="news-item" data-article="As U.S. budget fight looms, Republicans flip their fiscal script">
+                    As U.S. budget fight looms, Republicans flip their fiscal script.
+                </div>
+                <div class="news-item" data-article="U.S. military to accept transgender recruits on Monday: Pentagon">
+                    U.S. military to accept transgender recruits on Monday: Pentagon.
+                </div>
+                <div class="news-item" data-article="Senior U.S. Republican senator: 'Let Mr. Mueller do his job'">
+                    A gift-wrapped package addressed to U.S. Treasury Secretary Steven Mnuchin’s home in a posh Los Angeles neighborhood that was suspected of being a bomb was instead filled with horse manure, police told local media.
+                </div>
+                <div class="news-item" data-article="FBI Russia probe helped by Australian diplomat tip-off: NYT">
+                    FBI Russia probe helped by Australian diplomat tip-off: NYT.
+                </div>
+                <div class="news-item" data-article="Trump wants Postal Service to charge 'much more' for Amazon shipments">
+                    A federal judge in Seattle partially blocked U.S. President Donald Trump’s newest restrictions on refugee admissions on Saturday, .
+                </div>
+                <div class="news-item" data-article="White House, Congress prepare for talks on spending, immigration">
+                    White House, Congress prepare for talks on spending, immigration.
+                </div>
+                <div class="news-item" data-article="Trump says Russia probe will be fair, but timeline unclear: NYT">
+                    A federal appeals court in Washington on Friday rejected a bid by President Donald Trump’s administration to prevent the U.S. military from accepting transgender recruits starting Jan. 1
+                </div>
+                <div class="news-item" data-article="Factbox: Trump on Twitter (Dec 29) - Approval rating, Amazon">
+                    U.S. court rejects Trump bid to stop transgender military recruits on Jan. 1,"NEW YORK (Reuters)
+                </div>
+                <div class="news-item" data-article="Trump on Twitter (Dec 28) - Global Warming">
+                    Trump on Twitter (Dec 28) - Global Warming.
+                </div>
+                <div class="news-item" data-article="Alabama official to certify Senator-elect Jones today despite challenge: CNN">
+                    Alabama official to certify Senator-elect Jones today despite challenge: CNN.
+                </div>
+            </div>
+        </div>
+
+        <div class="back-link">
+            <a href="/">Back to Fake News Detection</a>
+        </div>
+    </div>
+</body>
+</html>

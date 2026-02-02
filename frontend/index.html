@@ -38,51 +38,40 @@
     </footer>
 
     <script>
-        // Backend API URL - change this based on where your Flask is running
-        const BACKEND_URL = 'http://localhost:5000'; // Local Flask
-        // const BACKEND_URL = 'https://your-backend.onrender.com'; // Or deployed backend
-
+        const BACKEND_URL = 'http://127.0.0.1:5000';
+        
         document.getElementById('predictionForm').addEventListener('submit', async function(e) {
             e.preventDefault();
             
             const article = document.getElementById('article').value;
-            
             if (!article.trim()) {
                 alert('Please enter a news article!');
                 return;
             }
 
-            // Show loading state
             const submitBtn = e.target.querySelector('button');
-            const originalText = submitBtn.textContent;
             submitBtn.textContent = 'Analyzing...';
             submitBtn.disabled = true;
 
             try {
-                // Try to connect to Flask backend
                 const formData = new FormData();
                 formData.append('article', article);
 
                 const response = await fetch(`${BACKEND_URL}/predict`, {
                     method: 'POST',
-                    body: formData,
-                    mode: 'cors'
+                    body: formData
                 });
 
                 if (response.ok) {
-                    // Backend is running - use real predictions
                     const data = await response.json();
                     displayResults(data.result, data.model_predictions);
                 } else {
-                    throw new Error('Backend unavailable');
+                    throw new Error('Backend error');
                 }
             } catch (error) {
-                // Backend not available - use mock predictions
-                console.log('Backend not available, using mock predictions');
-                const mockResults = getMockPrediction(article);
-                displayResults(mockResults.result, mockResults.model_predictions);
+                alert('⚠️ Backend not running!\n\nMake sure Flask is running:\npython app.py');
             } finally {
-                submitBtn.textContent = originalText;
+                submitBtn.textContent = 'Submit';
                 submitBtn.disabled = false;
             }
         });
@@ -95,45 +84,19 @@
             predictionSpan.textContent = result;
             predictionSpan.className = result.toLowerCase();
 
-            // If modelPredictions is HTML table (from Flask)
-            if (typeof modelPredictions === 'string') {
-                modelPredictionsDiv.innerHTML = modelPredictions;
-            } else {
-                // If it's an array/object (from mock)
-                let tableHTML = '<table><thead><tr><th>Model</th><th>Prediction</th></tr></thead><tbody>';
-                modelPredictions.forEach(model => {
-                    tableHTML += `<tr><td>${model.name}</td><td>${model.prediction}</td></tr>`;
-                });
-                tableHTML += '</tbody></table>';
-                modelPredictionsDiv.innerHTML = tableHTML;
-            }
+            let tableHTML = '<table style="width:100%; border-collapse:collapse; margin-top:20px;"><thead><tr style="background:#333;"><th style="padding:12px; border:1px solid #444; color:#FFD700;">Model</th><th style="padding:12px; border:1px solid #444; color:#FFD700;">Prediction</th></tr></thead><tbody>';
+            
+            modelPredictions.forEach(model => {
+                const predLabel = model.prediction === 1 ? 'FAKE' : 'REAL';
+                const predColor = model.prediction === 1 ? '#f44336' : '#4caf50';
+                tableHTML += `<tr><td style="padding:12px; border:1px solid #444; color:#FFD700;">${model.name}</td><td style="padding:12px; border:1px solid #444; color:${predColor}; font-weight:bold;">${predLabel}</td></tr>`;
+            });
+            
+            tableHTML += '</tbody></table>';
+            modelPredictionsDiv.innerHTML = tableHTML;
 
             resultBox.style.display = 'block';
             resultBox.scrollIntoView({ behavior: 'smooth' });
-        }
-
-        function getMockPrediction(article) {
-            // Mock prediction based on keywords (fallback when backend is offline)
-            const fakeKeywords = ['trump', 'shocking', 'unbelievable', 'you wont believe', 'disturbing', 'embarrassing'];
-            const articleLower = article.toLowerCase();
-            
-            let fakeCount = 0;
-            fakeKeywords.forEach(keyword => {
-                if (articleLower.includes(keyword)) fakeCount++;
-            });
-
-            const isFake = fakeCount >= 2;
-            const prediction = isFake ? 1 : 0;
-            
-            return {
-                result: isFake ? 'FAKE' : 'REAL',
-                model_predictions: [
-                    { name: 'Random Forest', prediction: prediction },
-                    { name: 'Decision Tree', prediction: prediction },
-                    { name: 'Logistic Regression', prediction: prediction },
-                    { name: 'Naive Bayes', prediction: prediction }
-                ]
-            };
         }
     </script>
 </body>

@@ -1,22 +1,4 @@
 {
-  "builds": [
-    {
-      "src": "frontend/static/**/*",
-      "use": "@vercel/static"
-    },
-    {
-      "src": "frontend/templates/**/*.html",
-      "use": "@vercel/static"
-    }
-  ],
-  "routes": [
-    {
-      "src": "/static/(.*)",
-      "dest": "/frontend/static/$1"
-    },
-    {
-      "src": "/(.*)",
-      "dest": "/frontend/templates/$1"
-    }
-  ]
+  "cleanUrls": true,
+  "trailingSlash": false
 }
