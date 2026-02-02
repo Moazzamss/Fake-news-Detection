@@ -38,7 +38,8 @@
     </footer>
 
     <script>
-        const BACKEND_URL = 'http://127.0.0.1:5000';
+        // 🔧 CHANGE THIS to your Render backend URL after deployment
+        const BACKEND_URL = 'https://fake-news-backend.onrender.com';  // Replace with YOUR Render URL
         
         document.getElementById('predictionForm').addEventListener('submit', async function(e) {
             e.preventDefault();
@@ -69,7 +70,7 @@
                     throw new Error('Backend error');
                 }
             } catch (error) {
-                alert('⚠️ Backend not running!\n\nMake sure Flask is running:\npython app.py');
+                alert('⚠️ Backend error! Please try again in a moment.\n\nNote: Free Render services may take 30s to wake up on first request.');
             } finally {
                 submitBtn.textContent = 'Submit';
                 submitBtn.disabled = false;

@@ -3,6 +3,7 @@ from flask_cors import CORS
 import pickle
 import numpy as np
 import pandas as pd
+import os
 
 app = Flask(__name__)
 CORS(app, resources={r"/*": {"origins": "*"}})
@@ -71,10 +72,6 @@ def predict():
         return jsonify({'error': str(e), 'result': 'ERROR'}), 500
 
 if __name__ == '__main__':
-    print("\n" + "="*50)
-    print("🚀 BACKEND RUNNING")
-    print("="*50)
-    print("Backend API: http://127.0.0.1:5000")
-    print("Frontend: Open index.html in browser")
-    print("="*50 + "\n")
-    app.run(debug=True, host='127.0.0.1', port=5000)
+    # CHANGED: Use environment port for Render, default to 5000 for local
+    port = int(os.environ.get('PORT', 5000))
+    app.run(debug=False, host='0.0.0.0', port=port)
