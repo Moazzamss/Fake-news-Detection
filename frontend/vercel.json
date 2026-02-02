@@ -1,0 +1,18 @@
+{
+  "builds": [
+    {
+      "src": "frontend/templates/**/*.html",
+      "use": "@vercel/static"
+    },
+    {
+      "src": "frontend/static/**/*",
+      "use": "@vercel/static"
+    }
+  ],
+  "routes": [
+    {
+      "src": "/(.*)",
+      "dest": "frontend/templates/$1"
+    }
+  ]
+}
