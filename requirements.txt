@@ -112,7 +112,6 @@ Pygments==2.19.2
 pynput==1.8.1
 pyod==2.0.4
 pyparsing==3.2.1
-pypiwin32==223
 PySocks==1.7.1
 pytesseract==0.3.13
 python-dateutil==2.9.0.post0
@@ -167,4 +166,5 @@ webencodings==0.5.1
 websocket-client==1.8.0
 Werkzeug==3.1.4
 wsproto==1.2.0
+
 
