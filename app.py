@@ -4,7 +4,8 @@ import numpy as np
 import pandas as pd
 
 # Initialize Flask app
-app = Flask(__name__)
+app = Flask(__name__, template_folder='frontend/templates', static_folder='frontend/static')
+
 
 # Load the models and vectorizer
 with open('models/rf_model.pkl', 'rb') as f:
