@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ASHAR Fake News Tester</title>
+    <link rel="stylesheet" href="static/styles/style.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>ASHAR Fake News Tester</h1>
+            <p>Check the authenticity of news articles using advanced AI models.</p>
+        </header>
+
+        <form action="/predict" method="POST">
+            <textarea name="article" id="article" placeholder="Paste your news article here..."></textarea>
+            <button type="submit">Submit</button>
+        </form>
+
+        {% if result %}
+        <div class="result-box">
+            <h2>Prediction: <span id="prediction" class="{{ result|lower }}">{{ result }}</span></h2>
+            <h3>Individual Model Predictions:</h3>
+            <div id="model_predictions">
+                {{ model_predictions|safe }}
+            </div>
+        </div>
+        {% endif %}
+
+        <div class="news-selection">
+            <a href="/news-selection" class="cta-link">Pick a news article</a>
+        </div>
+    </div>
+
+    <footer>
+        <div class="footer-links">
+    <a href="/model-performance" class="cta-link">Model Performance</a>
+    <a href="/about" class="cta-link">About the System</a>
+</div>
+
+        <p>Made with ❤️ by ASHAR | <a href="#">Terms</a> | <a href="#">Privacy</a></p>
+    </footer>
+</body>
+</html>

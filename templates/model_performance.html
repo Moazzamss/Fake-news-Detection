@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Model Performance - Fake News Detection</title>
+    <link rel="stylesheet" href="static/styles/style.css">
+</head>
+<body>
+    <div class="container performance-container">
+        <header>
+            <h1>Model Performance</h1>
+            <p>Here are the key performance metrics for the models used in our Fake News Detection system.</p>
+        </header>
+
+        <!-- Accuracy Table -->
+        <section class="performance-section">
+            <h2>Accuracy</h2>
+            <p>Here is the overall accuracy of each model:</p>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Model</th>
+                        <th>Accuracy</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Random Forest</td>
+                        <td>0.9974811</td>
+                    </tr>
+                    <tr>
+                        <td>Decision Tree</td>
+                        <td>0.9949622</td>
+                    </tr>
+                    <tr>
+                        <td>Logistic Regression</td>
+                        <td>0.984886</td>
+                    </tr>
+                    <tr>
+                        <td>Naive Bayes</td>
+                        <td>0.954659</td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+
+        <!-- Precision, Recall, F1-Score -->
+        <section class="performance-section">
+            <h2>Precision, Recall, and F1-Score</h2>
+            <p>These metrics provide a more detailed understanding of model performance, especially with imbalanced datasets:</p>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Model</th>
+                        <th>Precision</th>
+                        <th>Recall</th>
+                        <th>F1-Score</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Random Forest</td>
+                        <td>0.92</td>
+                        <td>0.91</td>
+                        <td>0.91</td>
+                    </tr>
+                    <tr>
+                        <td>Decision Tree</td>
+                        <td>0.85</td>
+                        <td>0.80</td>
+                        <td>0.82</td>
+                    </tr>
+                    <tr>
+                        <td>Logistic Regression</td>
+                        <td>0.88</td>
+                        <td>0.85</td>
+                        <td>0.86</td>
+                    </tr>
+                    <tr>
+                        <td>Naive Bayes</td>
+                        <td>0.83</td>
+                        <td>0.79</td>
+                        <td>0.81</td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+
+        <!-- Confusion Matrix -->
+        <section class="performance-section">
+            <h2>Confusion Matrix</h2>
+            <p>Below is the confusion matrix for the Random Forest model:</p>
+            <div id="confusion-matrix">
+                <img src="static/images/rf_confusion_matrix.png" alt="Random Forest Confusion Matrix">
+            </div>
+        </section>
+
+        <!-- ROC Curve -->
+        <section class="performance-section">
+            <h2>ROC Curve</h2>
+            <p>Here is the ROC curve for the Random Forest model:</p>
+            <div id="roc-curve">
+                <img src="static/images/rf_roc_curve.png" alt="Random Forest ROC Curve">
+            </div>
+        </section>
+
+        <footer>
+            <p>Made with ❤️ by ASHAR | <a href="#">Terms</a> | <a href="#">Privacy</a></p>
+        </footer>
+    </div>
+</body>
+</html>

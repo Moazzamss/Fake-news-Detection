@@ -1,0 +1,287 @@
+/* Global Reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Body styling */
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #121212; /* Black background */
+    color: #FFD700; /* Yellow text */
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+/* Container for the page content */
+.container {
+    background-color: #1d1d1d; /* Dark background for the container */
+    width: 100%;
+    max-width: 900px;
+    padding: 30px;
+    border-radius: 15px;
+    box-shadow: 0px 15px 30px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    margin: 20px;
+}
+
+/* Header styling */
+header h1 {
+    font-size: 3rem;
+    font-weight: bold;
+    color: #FFD700; /* Yellow */
+}
+
+header p {
+    font-size: 1.2rem;
+    color: #bbb; /* Light grey text for secondary content */
+    margin-top: 10px;
+}
+
+/* Form styling */
+form {
+    margin-top: 30px;
+    position: relative;
+}
+
+textarea {
+    width: 100%;
+    height: 150px;
+    padding: 12px;
+    border: 1px solid #FFD700; /* Yellow border */
+    border-radius: 10px;
+    font-size: 1rem;
+    resize: vertical;
+    margin-bottom: 20px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.05);
+    background-color: #222; /* Dark background for text area */
+    color: #FFD700; /* Yellow text */
+}
+
+button {
+    padding: 12px 25px;
+    background-color: #FFD700; /* Yellow */
+    color: #000; /* Black text */
+    border: none;
+    border-radius: 10px;
+    font-size: 1.1rem;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+button:hover {
+    background-color: #ffcc00; /* Lighter yellow on hover */
+}
+
+/* Result Box */
+.result-box {
+    background-color: #1a1a1a; /* Darker background for result box */
+    margin-top: 30px;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+.result-box h2 {
+    font-size: 2rem;
+    margin-bottom: 15px;
+}
+
+.result-box .real {
+    color: #4caf50; /* Green for 'Real' */
+}
+
+.result-box .fake {
+    color: #f44336; /* Red for 'Fake' */
+}
+
+#model_predictions {
+    font-size: 1.2rem;
+    margin-top: 20px;
+    text-align: left;
+}
+
+/* Link Styling */
+.cta-link {
+    display: inline-block;
+    margin-top: 20px;
+    text-decoration: none;
+    background-color: #8e2de2; /* Purple background for CTA button */
+    padding: 10px 20px;
+    border-radius: 30px;
+    color: white;
+    font-size: 1rem;
+    transition: background-color 0.3s;
+}
+
+.cta-link:hover {
+    background-color: #6a1b9a;
+}
+
+/* Footer */
+footer {
+    text-align: center;
+    margin-top: 30px;
+    color: #777;
+    font-size: 0.9rem;
+}
+
+footer a {
+    color: #FFD700; /* Yellow */
+    text-decoration: none;
+}
+
+footer a:hover {
+    text-decoration: underline;
+}
+
+/* Global styling for About page */
+.about-container {
+    max-width: 900px;
+    margin: 30px auto;
+    padding: 20px;
+    background-color: #222;
+    border-radius: 15px;
+    box-shadow: 0px 10px 30px rgba(0, 0, 0, 0.1);
+    font-size: 1.1rem;
+}
+
+header h1 {
+    font-size: 2.5rem;
+    margin-bottom: 15px;
+}
+
+header p {
+    font-size: 1.2rem;
+    color: #bbb;
+}
+
+/* About Sections */
+.about-section {
+    margin-top: 30px;
+    padding: 15px;
+    border-left: 5px solid #FFD700; /* Yellow border on left */
+}
+
+.about-section h2 {
+    font-size: 2rem;
+    color: #FFD700; /* Yellow */
+    margin-bottom: 10px;
+}
+
+.about-section p {
+    line-height: 1.6;
+    color: #bbb;
+}
+
+.about-section ul {
+    margin-top: 10px;
+    padding-left: 20px;
+    list-style-type: disc;
+}
+
+.about-section ul li {
+    margin-bottom: 8px;
+}
+
+/* Additional Styles for Performance Page */
+.performance-container {
+    max-width: 1000px;
+    margin: 30px auto;
+    padding: 20px;
+    background-color: #222;
+    border-radius: 15px;
+    box-shadow: 0px 10px 30px rgba(0, 0, 0, 0.1);
+    font-size: 1.1rem;
+}
+
+header h1 {
+    font-size: 2.5rem;
+    margin-bottom: 15px;
+}
+
+header p {
+    font-size: 1.2rem;
+    color: #bbb;
+}
+
+/* Performance Section */
+.performance-section {
+    margin-top: 30px;
+    padding: 15px;
+    border-left: 5px solid #FFD700; /* Yellow left border */
+}
+
+.performance-section h2 {
+    font-size: 2rem;
+    color: #FFD700; /* Yellow */
+    margin-bottom: 10px;
+}
+
+.performance-section p {
+    line-height: 1.6;
+    color: #bbb;
+}
+
+.performance-section table {
+    width: 100%;
+    margin-top: 20px;
+    border-collapse: collapse;
+}
+
+.performance-section th, .performance-section td {
+    padding: 10px;
+    border: 1px solid #ddd;
+    text-align: center;
+}
+
+.performance-section th {
+    background-color: #333; /* Dark background */
+    color: #FFD700; /* Yellow */
+}
+
+#confusion-matrix, #roc-curve {
+    text-align: center;
+    margin-top: 20px;
+}
+
+footer {
+    text-align: center;
+    margin-top: 30px;
+    color: #777;
+    font-size: 0.9rem;
+}
+
+footer a {
+    color: #FFD700; /* Yellow */
+    text-decoration: none;
+}
+
+footer a:hover {
+    text-decoration: underline;
+}
+
+/* Footer links styling */
+.footer-links {
+    margin-top: 30px;
+}
+
+.footer-links .cta-link {
+    margin: 10px;
+    display: inline-block;
+    background-color: #FFD700; /* Yellow for CTA */
+    padding: 10px 20px;
+    border-radius: 30px;
+    color: black;
+    font-size: 1rem;
+    transition: background-color 0.3s;
+    text-decoration: none;
+}
+
+.footer-links .cta-link:hover {
+    background-color: #ffcc00;
+}

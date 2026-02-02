@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About the Fake News Detection System</title>
+    <link rel="stylesheet" href="static/styles/style.css">
+</head>
+<body>
+    <div class="container about-container">
+        <header>
+            <h1>About the Fake News Detection System</h1>
+            <p>Learn about how our system works and the components that make it possible.</p>
+        </header>
+
+        <section class="about-section">
+            <h2>Overview</h2>
+            <p>
+                This system uses machine learning models to classify news articles as either fake or real. 
+                By analyzing the text, it can predict the authenticity of the news using a variety of models.
+                The system is designed to be simple and easy to use, making it accessible for both researchers and general users.
+            </p>
+        </section>
+
+        <section class="about-section">
+            <h2>System Architecture</h2>
+            <p>
+                The system consists of a backend running Flask, which processes user input through machine learning models. 
+                The frontend is built with HTML, CSS, and JavaScript for a responsive user experience. 
+                The backend communicates with machine learning models stored locally to predict whether a news article is real or fake.
+            </p>
+        </section>
+
+        <section class="about-section">
+            <h2>Dataset</h2>
+            <p>
+                The dataset used for training our models consists of labeled news articles, with a classification of "Real" or "Fake." 
+                This dataset is preprocessed by removing irrelevant content, such as advertisements and author names, 
+                and tokenizing the text into words for feature extraction.
+            </p>
+        </section>
+
+        <section class="about-section">
+            <h2>Machine Learning Models</h2>
+            <p>
+                The system uses several machine learning models to classify news articles:
+                <ul>
+                    <li><strong>Random Forest (RF)</strong>: A versatile and powerful ensemble method.</li>
+                    <li><strong>Decision Tree (DT)</strong>: A simple, interpretable tree structure.</li>
+                    <li><strong>Logistic Regression (LR)</strong>: A linear model for binary classification.</li>
+                    <li><strong>Naive Bayes (NB)</strong>: A probabilistic model based on Bayes' theorem.</li>
+                </ul>
+                These models are trained on text features such as word frequencies and are used in combination to ensure accurate predictions.
+            </p>
+        </section>
+
+        <section class="about-section">
+            <h2>How It Works</h2>
+            <p>
+                To use the system, you simply paste a news article into the provided textarea. 
+                The text is processed by the backend, where it is passed through the trained machine learning models. 
+                The final prediction is made based on a majority vote from the individual models. 
+                The system then displays whether the article is predicted to be "REAL" or "FAKE."
+            </p>
+        </section>
+
+        <section class="about-section">
+            <h2>Limitations & Future Work</h2>
+            <p>
+                While the system provides a good baseline for detecting fake news, it is not perfect. 
+                The models may struggle with articles that have subtle language or lack clear indicators of being fake or real. 
+                Future work will involve:
+                <ul>
+                    <li>Improving the models' accuracy by training on a larger, more diverse dataset.</li>
+                    <li>Incorporating additional features such as sentiment analysis or article source reliability.</li>
+                    <li>Providing real-time feedback and improving user interactivity.</li>
+                </ul>
+            </p>
+        </section>
+
+        <footer>
+            <p>Made with ❤️ by ASHAR | <a href="#">Terms</a> | <a href="#">Privacy</a></p>
+        </footer>
+    </div>
+</body>
+</html>
