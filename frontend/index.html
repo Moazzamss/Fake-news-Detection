@@ -55,7 +55,6 @@
             submitBtn.disabled = true;
 
             try {
-                // Send JSON instead of FormData
                 const response = await fetch(`${API_URL}/api/predict`, {
                     method: 'POST',
                     headers: {
@@ -69,6 +68,7 @@
                 }
 
                 const data = await response.json();
+                console.log('Response:', data);
                 displayResults(data);
                 
             } catch (error) {
@@ -97,22 +97,23 @@
             // Create table for individual model predictions
             let tableHTML = '<table style="width:100%; border-collapse:collapse; margin-top:20px;"><thead><tr style="background:#333;"><th style="padding:12px; border:1px solid #444; color:#FFD700;">Model</th><th style="padding:12px; border:1px solid #444; color:#FFD700;">Prediction</th><th style="padding:12px; border:1px solid #444; color:#FFD700;">Confidence</th></tr></thead><tbody>';
             
+            // Map model names properly
             const models = {
                 'Logistic Regression': {
-                    prediction: data.model_predictions.logistic_regression,
-                    confidence: data.individual_confidences.logistic_regression
+                    prediction: data.model_predictions.logistic_regression || 'N/A',
+                    confidence: data.individual_confidences.logistic_regression || 0
                 },
                 'Decision Tree': {
-                    prediction: data.model_predictions.decision_tree,
-                    confidence: data.individual_confidences.decision_tree
+                    prediction: data.model_predictions.decision_tree || 'N/A',
+                    confidence: data.individual_confidences.decision_tree || 0
                 },
-                'Gradient Boosting': {
-                    prediction: data.model_predictions.gradient_boosting,
-                    confidence: data.individual_confidences.gradient_boosting
+                'Naive Bayes': {
+                    prediction: data.model_predictions.naive_bayes || 'N/A',
+                    confidence: data.individual_confidences.naive_bayes || 0
                 },
                 'Random Forest': {
-                    prediction: data.model_predictions.random_forest,
-                    confidence: data.individual_confidences.random_forest
+                    prediction: data.model_predictions.random_forest || 'N/A',
+                    confidence: data.individual_confidences.random_forest || 0
                 }
             };
 
