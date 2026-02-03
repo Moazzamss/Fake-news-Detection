@@ -118,19 +118,43 @@ def predict():
         rf_pred = rf_model.predict(text_vectorized)[0]
         rf_proba = rf_model.predict_proba(text_vectorized)[0]
         
-        # Ensemble voting
+        # Count how many models predict FAKE (1) vs REAL (0)
         predictions = [lr_pred, dt_pred, nb_pred, rf_pred]
-        final_prediction = max(set(predictions), key=predictions.count)
+        fake_count = predictions.count(1)  # Count how many predict FAKE (1)
+        real_count = predictions.count(0)  # Count how many predict REAL (0)
         
-        # Average confidence
-        avg_confidence = np.mean([
-            lr_proba[int(final_prediction)],
-            dt_proba[int(final_prediction)],
-            nb_proba[int(final_prediction)],
-            rf_proba[int(final_prediction)]
-        ]) * 100
+        # If 2 or more models say FAKE, final prediction is FAKE
+        # Otherwise REAL
+        if fake_count >= 2:
+            final_prediction = 1  # FAKE
+        else:
+            final_prediction = 0  # REAL
         
-        # FLIPPED LOGIC: 1=FAKE, 0=REAL (because that's how your models were trained)
+        # Calculate average confidence for the final prediction
+        # Only average the models that voted for the final prediction
+        confidence_values = []
+        if final_prediction == 1:  # If FAKE won
+            if lr_pred == 1:
+                confidence_values.append(lr_proba[1])
+            if dt_pred == 1:
+                confidence_values.append(dt_proba[1])
+            if nb_pred == 1:
+                confidence_values.append(nb_proba[1])
+            if rf_pred == 1:
+                confidence_values.append(rf_proba[1])
+        else:  # If REAL won
+            if lr_pred == 0:
+                confidence_values.append(lr_proba[0])
+            if dt_pred == 0:
+                confidence_values.append(dt_proba[0])
+            if nb_pred == 0:
+                confidence_values.append(nb_proba[0])
+            if rf_pred == 0:
+                confidence_values.append(rf_proba[0])
+        
+        # Average confidence of models that agree with final prediction
+        avg_confidence = np.mean(confidence_values) * 100 if confidence_values else 0
+        
         result = {
             'prediction': 'FAKE' if final_prediction == 1 else 'REAL',
             'confidence': round(avg_confidence, 2),
