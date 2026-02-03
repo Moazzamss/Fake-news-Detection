@@ -6,13 +6,11 @@
     <title>Pick a News Article</title>
     <link rel="stylesheet" href="style.css">
 
-
-
     <style>
         /* Body styling */
         body {
             font-family: Arial, sans-serif;
-            background-color: #212121; /* Dark background */
+            background-color: #121212; /* Dark background */
             color: #f0f0f0; /* Light text color */
             margin: 0;
             padding: 0;
@@ -21,24 +19,30 @@
             align-items: center;
             flex-direction: column;
             min-height: 100vh;
+            position: relative;
         }
 
         /* Container for the page content */
         .container {
-            background-color: #2c2c2c; /* Slightly lighter background for content */
+            background-color: #1d1d1d; /* Slightly lighter background for content */
             width: 100%;
-            max-width: 1000px;
+            max-width: 1200px;
             padding: 30px;
             border-radius: 15px;
             box-shadow: 0px 15px 30px rgba(0, 0, 0, 0.1);
             text-align: center;
+            position: relative;
+            z-index: 1;
+            margin: 20px;
         }
 
         /* Title */
         h1 {
             font-size: 2.5rem;
-            color: #f1c40f; /* Yellow color */
+            color: #FFD700; /* Yellow color */
             font-weight: bold;
+            margin-bottom: 10px;
+            text-shadow: 0 0 20px rgba(255, 215, 0, 0.5);
         }
 
         /* News Container */
@@ -46,43 +50,51 @@
             display: flex;
             justify-content: space-between;
             gap: 20px;
+            margin-top: 30px;
         }
 
         /* News Box Styling */
         .news-box {
-            width: 45%;
+            width: 48%;
             height: 500px;
             overflow-y: auto;
-            border: 1px solid #f0f0f0;
-            padding: 10px;
-            border-radius: 5px;
-            background-color: #333; /* Dark background for news boxes */
+            border: 2px solid #FFD700;
+            padding: 15px;
+            border-radius: 10px;
+            background-color: #222; /* Dark background for news boxes */
             color: #f0f0f0;
+            box-shadow: 0 4px 15px rgba(255, 215, 0, 0.2);
+        }
+
+        .news-box h3 {
+            position: sticky;
+            top: 0;
+            background-color: #222;
+            padding: 10px 0;
+            margin: -15px -15px 15px -15px;
+            padding-left: 15px;
+            padding-right: 15px;
+            border-bottom: 2px solid #FFD700;
+            z-index: 10;
         }
 
         .news-item {
-            margin-bottom: 10px;
-            padding: 10px;
-            background-color: #444; /* Lighter background for items */
-            border: 1px solid #f0f0f0;
-            border-radius: 5px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .copy-btn {
-            padding: 5px 12px;
-            font-size: 14px;
-            background-color: #f39c12; /* Yellow color */
-            color: #fff;
-            border: 1px solid #f39c12;
-            border-radius: 3px;
+            margin-bottom: 15px;
+            padding: 15px;
+            background-color: #2a2a2a; /* Lighter background for items */
+            border: 1px solid #444;
+            border-radius: 8px;
             cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 0.95rem;
+            line-height: 1.5;
         }
 
-        .copy-btn:hover {
-            background-color: #e67e22;
+        .news-item:hover {
+            background-color: #333;
+            border-color: #FFD700;
+            transform: translateX(5px);
+            box-shadow: 0 4px 10px rgba(255, 215, 0, 0.3);
         }
 
         /* Back link */
@@ -93,55 +105,114 @@
 
         .back-link a {
             text-decoration: none;
-            color: #f39c12; /* Yellow color */
+            background: linear-gradient(135deg, #8e2de2, #4a00e0);
+            padding: 12px 30px;
+            border-radius: 30px;
+            color: white;
             font-weight: bold;
-            font-size: 1.2rem;
+            font-size: 1.1rem;
+            display: inline-block;
+            transition: all 0.3s;
+            box-shadow: 0 4px 15px rgba(142, 45, 226, 0.3);
         }
 
         .back-link a:hover {
-            color: #e67e22;
+            background: linear-gradient(135deg, #6a1b9a, #8e2de2);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(142, 45, 226, 0.5);
         }
 
         /* Footer Styling */
         footer {
-            background-color: #1a1a1a;
+            background-color: transparent;
             color: #fff;
             text-align: center;
-            padding: 10px;
+            padding: 20px;
             margin-top: 30px;
             font-size: 1rem;
         }
 
         footer a {
-            color: #f39c12;
+            color: #FFD700;
             text-decoration: none;
+            transition: color 0.3s;
         }
 
         footer a:hover {
-            color: #e67e22;
+            color: #FFA500;
+        }
+
+        /* Scrollbar styling */
+        .news-box::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        .news-box::-webkit-scrollbar-track {
+            background: #1a1a1a;
+            border-radius: 10px;
+        }
+
+        .news-box::-webkit-scrollbar-thumb {
+            background: #FFD700;
+            border-radius: 10px;
+        }
+
+        .news-box::-webkit-scrollbar-thumb:hover {
+            background: #FFA500;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .news-container {
+                flex-direction: column;
+            }
+            
+            .news-box {
+                width: 100%;
+            }
         }
     </style>
 </head>
 <body>
+    <!-- Decorative Background Elements -->
+    <div class="decorative-elements">
+        <div class="floating-icon" style="top: 10%; left: 5%;">📰</div>
+        <div class="floating-icon" style="top: 20%; right: 8%;">📋</div>
+        <div class="floating-icon" style="bottom: 15%; left: 10%;">🗞️</div>
+        <div class="floating-icon" style="bottom: 25%; right: 5%;">📑</div>
+        <div class="floating-icon" style="top: 50%; left: 3%;">📄</div>
+        <div class="floating-icon" style="top: 60%; right: 3%;">📝</div>
+        
+        <!-- Geometric shapes -->
+        <div class="geometric-shape circle" style="top: 15%; left: 15%;"></div>
+        <div class="geometric-shape square" style="bottom: 20%; right: 12%;"></div>
+        <div class="geometric-shape triangle" style="top: 40%; right: 8%;"></div>
+        <div class="geometric-shape circle" style="bottom: 30%; left: 8%;"></div>
+    </div>
+
     <div class="container">
         <h1>Pick a News Article</h1>
+        <div class="stats-badges" style="margin-top: 15px; margin-bottom: 10px;">
+            <span class="badge">🔴 10 Fake Examples</span>
+            <span class="badge">🟢 10 Real Examples</span>
+        </div>
         
         <!-- News Boxes -->
         <div class="news-container">
             <!-- Fake News Box -->
             <div class="news-box" id="fake-news-box">
-                <h3 style="color: #f39c12;">Fake News</h3>
-                <div class="news-item" data-article="Donald Trump Sends Out Embarrassing New Year’s Eve Message">
-                    Donald Trump Sends Out Embarrassing New Year’s Eve Message; This is Disturbing.
+                <h3 style="color: #f44336;">🔴 Fake News</h3>
+                <div class="news-item" data-article="Donald Trump Sends Out Embarrassing New Year's Eve Message">
+                    Donald Trump Sends Out Embarrassing New Year's Eve Message; This is Disturbing.
                 </div>
                 <div class="news-item" data-article="Drunk Bragging Trump Staffer Started Russian Collusion Investigation">
                     Drunk Bragging Trump Staffer Started Russian Collusion Investigation.
                 </div>
-                <div class="news-item" data-article="Sheriff David Clarke Becomes An Internet Joke For Threatening To Poke People ‘In The Eye’">
-                    Sheriff David Clarke Becomes An Internet Joke For Threatening To Poke People ‘In The Eye’.
+                <div class="news-item" data-article="Sheriff David Clarke Becomes An Internet Joke For Threatening To Poke People 'In The Eye'">
+                    Sheriff David Clarke Becomes An Internet Joke For Threatening To Poke People 'In The Eye'.
                 </div>
-                <div class="news-item" data-article="Trump Is So Obsessed He Even Has Obama’s Name Coded Into His Website (IMAGES)">
-                    Trump Is So Obsessed He Even Has Obama’s Name Coded Into His Website (IMAGES).
+                <div class="news-item" data-article="Trump Is So Obsessed He Even Has Obama's Name Coded Into His Website (IMAGES)">
+                    Trump Is So Obsessed He Even Has Obama's Name Coded Into His Website (IMAGES).
                 </div>
                 <div class="news-item" data-article="Pope Francis Just Called Out Donald Trump During His Christmas Speech">
                     Pope Francis Just Called Out Donald Trump During His Christmas Speech.
@@ -155,8 +226,8 @@
                 <div class="news-item" data-article="Trump Said Some INSANELY Racist Stuff Inside The Oval Office, And Witnesses Back It Up">
                     Trump Said Some INSANELY Racist Stuff Inside The Oval Office, And Witnesses Back It Up.
                 </div>
-                <div class="news-item" data-article="Former CIA Director Slams Trump Over UN Bullying, Openly Suggests He’s Acting Like A Dictator (TWEET)">
-                    Former CIA Director Slams Trump Over UN Bullying, Openly Suggests He’s Acting Like A Dictator (TWEET).
+                <div class="news-item" data-article="Former CIA Director Slams Trump Over UN Bullying, Openly Suggests He's Acting Like A Dictator (TWEET)">
+                    Former CIA Director Slams Trump Over UN Bullying, Openly Suggests He's Acting Like A Dictator (TWEET).
                 </div>
                 <div class="news-item" data-article="WATCH: Brand-New Pro-Trump Ad Features So Much A** Kissing It Will Make You Sick">
                     WATCH: Brand-New Pro-Trump Ad Features So Much A** Kissing It Will Make You Sick.
@@ -165,7 +236,7 @@
 
             <!-- Real News Box -->
             <div class="news-box" id="real-news-box">
-                <h3 style="color: #f39c12;">Real News</h3>
+                <h3 style="color: #4caf50;">🟢 Real News</h3>
                 <div class="news-item" data-article="As U.S. budget fight looms, Republicans flip their fiscal script">
                     As U.S. budget fight looms, Republicans flip their fiscal script.
                 </div>
@@ -173,19 +244,19 @@
                     U.S. military to accept transgender recruits on Monday: Pentagon.
                 </div>
                 <div class="news-item" data-article="Senior U.S. Republican senator: 'Let Mr. Mueller do his job'">
-                    A gift-wrapped package addressed to U.S. Treasury Secretary Steven Mnuchin’s home in a posh Los Angeles neighborhood that was suspected of being a bomb was instead filled with horse manure, police told local media.
+                    A gift-wrapped package addressed to U.S. Treasury Secretary Steven Mnuchin's home in a posh Los Angeles neighborhood that was suspected of being a bomb was instead filled with horse manure, police told local media.
                 </div>
                 <div class="news-item" data-article="FBI Russia probe helped by Australian diplomat tip-off: NYT">
                     FBI Russia probe helped by Australian diplomat tip-off: NYT.
                 </div>
                 <div class="news-item" data-article="Trump wants Postal Service to charge 'much more' for Amazon shipments">
-                    A federal judge in Seattle partially blocked U.S. President Donald Trump’s newest restrictions on refugee admissions on Saturday, .
+                    A federal judge in Seattle partially blocked U.S. President Donald Trump's newest restrictions on refugee admissions on Saturday, .
                 </div>
                 <div class="news-item" data-article="White House, Congress prepare for talks on spending, immigration">
                     White House, Congress prepare for talks on spending, immigration.
                 </div>
                 <div class="news-item" data-article="Trump says Russia probe will be fair, but timeline unclear: NYT">
-                    A federal appeals court in Washington on Friday rejected a bid by President Donald Trump’s administration to prevent the U.S. military from accepting transgender recruits starting Jan. 1
+                    A federal appeals court in Washington on Friday rejected a bid by President Donald Trump's administration to prevent the U.S. military from accepting transgender recruits starting Jan. 1
                 </div>
                 <div class="news-item" data-article="Factbox: Trump on Twitter (Dec 29) - Approval rating, Amazon">
                     U.S. court rejects Trump bid to stop transgender military recruits on Jan. 1,"NEW YORK (Reuters)
@@ -200,8 +271,12 @@
         </div>
 
         <div class="back-link">
-            <a href="/">Back to Fake News Detection</a>
+            <a href="/">← Back to Fake News Detection</a>
         </div>
     </div>
+
+    <footer>
+        <p><a href="#">Terms</a> | <a href="#">Privacy</a></p>
+    </footer>
 </body>
 </html>

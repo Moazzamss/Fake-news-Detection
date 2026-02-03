@@ -130,14 +130,15 @@ def predict():
             rf_proba[int(final_prediction)]
         ]) * 100
         
+        # FLIPPED LOGIC: 1=FAKE, 0=REAL (because that's how your models were trained)
         result = {
-            'prediction': 'REAL' if final_prediction == 1 else 'FAKE',
+            'prediction': 'FAKE' if final_prediction == 1 else 'REAL',
             'confidence': round(avg_confidence, 2),
             'model_predictions': {
-                'logistic_regression': 'REAL' if lr_pred == 1 else 'FAKE',
-                'decision_tree': 'REAL' if dt_pred == 1 else 'FAKE',
-                'naive_bayes': 'REAL' if nb_pred == 1 else 'FAKE',
-                'random_forest': 'REAL' if rf_pred == 1 else 'FAKE'
+                'logistic_regression': 'FAKE' if lr_pred == 1 else 'REAL',
+                'decision_tree': 'FAKE' if dt_pred == 1 else 'REAL',
+                'naive_bayes': 'FAKE' if nb_pred == 1 else 'REAL',
+                'random_forest': 'FAKE' if rf_pred == 1 else 'REAL'
             },
             'individual_confidences': {
                 'logistic_regression': round(lr_proba[int(lr_pred)] * 100, 2),
