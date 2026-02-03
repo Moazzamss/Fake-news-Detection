@@ -20,6 +20,7 @@
 
         <div class="result-box" id="resultBox" style="display: none;">
             <h2>Prediction: <span id="prediction"></span></h2>
+            <h3>Confidence: <span id="confidence"></span></h3>
             <h3>Individual Model Predictions:</h3>
             <div id="model_predictions"></div>
         </div>
@@ -54,42 +55,74 @@
             submitBtn.disabled = true;
 
             try {
-                const formData = new FormData();
-                formData.append('article', article);
-
-                const response = await fetch(`${BACKEND_URL}/predict`, {
+                // Send JSON instead of FormData
+                const response = await fetch(`${API_URL}/api/predict`, {
                     method: 'POST',
-                    body: formData
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({ text: article })
                 });
 
-                if (response.ok) {
-                    const data = await response.json();
-                    displayResults(data.result, data.model_predictions);
-                } else {
-                    throw new Error('Backend error');
+                if (!response.ok) {
+                    throw new Error(`HTTP error! status: ${response.status}`);
                 }
+
+                const data = await response.json();
+                displayResults(data);
+                
             } catch (error) {
-                alert('⚠️ Backend error! Please try again in a moment.\n\nNote: Free Render services may take 30s to wake up on first request.');
+                console.error('Error:', error);
+                alert('⚠️ Backend error! Please try again in a moment.\n\nNote: Free services may take 30s to wake up on first request.');
             } finally {
                 submitBtn.textContent = 'Submit';
                 submitBtn.disabled = false;
             }
         });
 
-        function displayResults(result, modelPredictions) {
+        function displayResults(data) {
             const resultBox = document.getElementById('resultBox');
             const predictionSpan = document.getElementById('prediction');
+            const confidenceSpan = document.getElementById('confidence');
             const modelPredictionsDiv = document.getElementById('model_predictions');
 
-            predictionSpan.textContent = result;
-            predictionSpan.className = result.toLowerCase();
-
-            let tableHTML = '<table style="width:100%; border-collapse:collapse; margin-top:20px;"><thead><tr style="background:#333;"><th style="padding:12px; border:1px solid #444; color:#FFD700;">Model</th><th style="padding:12px; border:1px solid #444; color:#FFD700;">Prediction</th></tr></thead><tbody>';
+            // Display main prediction
+            predictionSpan.textContent = data.prediction;
+            predictionSpan.className = data.prediction.toLowerCase();
             
-            modelPredictions.forEach(model => {
-                const predLabel = model.prediction === 1 ? 'FAKE' : 'REAL';
-                const predColor = model.prediction === 1 ? '#f44336' : '#4caf50';
-                tableHTML += `<tr><td style="padding:12px; border:1px solid #444; color:#FFD700;">${model.name}</td><td style="padding:12px; border:1px solid #444; color:${predColor}; font-weight:bold;">${predLabel}</td></tr>`;
+            // Display confidence
+            confidenceSpan.textContent = `${data.confidence}%`;
+            confidenceSpan.className = data.prediction.toLowerCase();
+
+            // Create table for individual model predictions
+            let tableHTML = '<table style="width:100%; border-collapse:collapse; margin-top:20px;"><thead><tr style="background:#333;"><th style="padding:12px; border:1px solid #444; color:#FFD700;">Model</th><th style="padding:12px; border:1px solid #444; color:#FFD700;">Prediction</th><th style="padding:12px; border:1px solid #444; color:#FFD700;">Confidence</th></tr></thead><tbody>';
+            
+            const models = {
+                'Logistic Regression': {
+                    prediction: data.model_predictions.logistic_regression,
+                    confidence: data.individual_confidences.logistic_regression
+                },
+                'Decision Tree': {
+                    prediction: data.model_predictions.decision_tree,
+                    confidence: data.individual_confidences.decision_tree
+                },
+                'Gradient Boosting': {
+                    prediction: data.model_predictions.gradient_boosting,
+                    confidence: data.individual_confidences.gradient_boosting
+                },
+                'Random Forest': {
+                    prediction: data.model_predictions.random_forest,
+                    confidence: data.individual_confidences.random_forest
+                }
+            };
+
+            Object.entries(models).forEach(([name, info]) => {
+                const predColor = info.prediction === 'FAKE' ? '#f44336' : '#4caf50';
+                tableHTML += `<tr>
+                    <td style="padding:12px; border:1px solid #444; color:#FFD700;">${name}</td>
+                    <td style="padding:12px; border:1px solid #444; color:${predColor}; font-weight:bold;">${info.prediction}</td>
+                    <td style="padding:12px; border:1px solid #444; color:#FFD700;">${info.confidence}%</td>
+                </tr>`;
             });
             
             tableHTML += '</tbody></table>';
